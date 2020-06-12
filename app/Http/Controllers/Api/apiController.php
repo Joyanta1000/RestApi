@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Clients;
+use App\Files;
 
 class apiController extends Controller
 {
@@ -45,9 +46,22 @@ class apiController extends Controller
         $obj->name  = $name;
         $obj->email = $email;
         $obj->address  = $address;
-        if ($obj->save()) {
+
+        $file = new Files;
+
+        $file->client_id = $request->client_id;
+        $image = $request->file('image');
+        $image_name = time().'.png';
+        $public_path = public_path('Uploads');
+
+        $image->move($public_path, $image_name);
+
+        $file->image = $image_name;
+
+        if ($obj->save()&&$file->save()) {
             return response()->json([
-                'obj' => $obj
+                'obj' => $obj,
+                'file' => $file
             ]);
         }
     }
