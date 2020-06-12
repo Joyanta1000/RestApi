@@ -1,5 +1,10 @@
-Sources ::: 
-###### For authentication
+Sources :
+
+###### For store data and images
+
+https://www.youtube.com/watch?v=6CJ73IImcAY
+
+###### For api authentication
 
 https://www.youtube.com/watch?v=OJtGeqgXwfo&t=603s
 
